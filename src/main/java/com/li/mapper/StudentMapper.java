@@ -1,0 +1,32 @@
+package com.li.mapper;
+
+
+import com.li.bean.Student;
+import org.apache.ibatis.annotations.Delete;
+import org.apache.ibatis.annotations.Mapper;
+import org.apache.ibatis.annotations.Select;
+import org.springframework.stereotype.Repository;
+
+import java.util.List;
+
+@Repository
+@Mapper
+public interface StudentMapper {
+    List<Student> queryAll();
+
+    Student check(Student student);
+
+    //获取全部学生信息
+    @Select("select count(*) from student")
+    int queryCOuntALlstu();
+
+    void AddStudent(Student student);
+
+    Student getStudentById(Integer id);
+
+    void EditStudent(Student student);
+
+    //获取学生id
+    @Delete("delete from student where student_id=#{id}")
+    void deleteById(Integer id);
+}
